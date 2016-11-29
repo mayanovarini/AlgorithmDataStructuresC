@@ -53,7 +53,7 @@ void del(int n) {
   delete temp2;
 }
 
-void reverse_iterative1() { //when head is a global variable
+struct Node* reverse_iterative2(struct Node* head) { //when head is a local variable
   struct Node *current, *prev, *next;
   current = head;
   prev = NULL;
@@ -64,17 +64,7 @@ void reverse_iterative1() { //when head is a global variable
     current = next;
   }
   head = prev; // at this point, current will point at Null
-}
-
-void reverse_recursive(struct Node* p) {
-  if (p->next == NULL) {
-    head = p;
-    return;
-  }
-  reverse_recursive(p->next); // keep calling the function until it reaches the second last node
-  struct Node* q = p->next;
-  q->next = p;
-  p->next = NULL;
+  return head;
 }
 
 int main() {
@@ -92,6 +82,5 @@ int main() {
   //scanf("%d", &n);
   //del(i);
   reverse_iterative1();
-  reverse_recursive(head);
   print();
 }
