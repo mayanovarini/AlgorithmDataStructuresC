@@ -36,6 +36,14 @@ void print() {
   printf ("\n");
 }
 
+void print_reverse(struct Node* p) {
+  if (p == NULL) {
+    return;
+  }
+  print_reverse(p->next);
+  printf("%d ", p->data);
+}
+
 void del(int n) {
   struct Node* temp1 = head; //temp1 is pointing at the first node
    if (n==1) { // if you want to delete the first node
@@ -92,6 +100,8 @@ int main() {
   //scanf("%d", &n);
   //del(i);
   reverse_iterative1();
+  print(); // output 3 1 1 3 4
   reverse_recursive(head);
-  print();
+  print(); // output 4 3 1 1 3
+  print_reverse(head); //output 3 1 1 3 4
 }
