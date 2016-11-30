@@ -79,3 +79,6 @@ int main() {
   printf("\n Linked list after removing duplicates ");
   printList(head);
 }
+
+
+// run it here https://repl.it/EbXh/0
