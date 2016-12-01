@@ -1,0 +1,48 @@
+//  Stack - Array based implemention
+
+#include <stdio.h>
+#define MAX_SIZE 50
+
+int A[MAX_SIZE];
+int top = -1;
+
+void push(int x) {
+  if (top == MAX_SIZE -1) {
+    printf("Error : Stack overflow\n");
+    return;
+  }
+  A[++top] = x;
+}
+
+void pop() {
+  if (top == -1) {
+    printf("Error : Nothing to pop\n");
+    return;
+  }
+  top--;
+}
+
+void print() {
+  int i;
+  printf("Stack: ");
+  for (i=0; i<=top;i++) {
+    printf("%d ", A[i]);
+  }
+  printf("\n");
+}
+
+int main() {
+  push(2);
+  push(3);
+  push(19);
+  push(4);
+  push(7);
+  print(); //output 2 3 19 4 7
+  pop(); //taking out 7
+  print(); //output 2 3 19 4
+  push(13);
+  push(5);
+  print(); //output 2 3 19 4 13 5
+  pop(); //taking out 5
+  print(); //output 2 3 19 4 13
+}
