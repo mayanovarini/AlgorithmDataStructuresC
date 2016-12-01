@@ -1,0 +1,65 @@
+//  Stack - Array based implemention
+
+
+#include <stdlib.h>
+#include <stdio.h>
+
+#define MAX_SIZE 50
+
+int A[MAX_SIZE];
+
+struct Node {
+  int data;
+  struct Node* link;
+};
+
+struct Node* top = NULL;
+
+void push_head(int x) {
+  struct Node* temp = new Node();
+  temp->data = x;
+  temp->link = top;
+  top = temp;
+}
+
+void push_tail(int x) {
+  struct Node* temp = top;
+  while (temp->link != NULL) {
+    temp = temp->link;
+  }
+  temp->link = new Node; // returns a pointer to the new node
+  temp->link->data = x;
+  temp->link->link = NULL;
+}
+
+void pop_head() {
+  struct Node* temp; //no node necessary
+  if (top == NULL) return;
+  temp = top;
+  top = top->link;
+  free(temp);
+}
+
+void print() {
+  Node* temp = top;
+  while (temp != NULL) {
+    printf("%d ", temp -> data);
+    temp = temp -> link;
+  }
+  printf("\n");
+}
+
+int main() {
+  push_head(2);
+  print(); // output 2
+  push_head(6);
+  print(); // output 6 2
+  push_head(9);
+  print(); // output 9 6 2
+  pop_head();
+  print(); // output 6 2
+  push_tail(8);
+  print(); // output 6 2 8
+  pop_head();
+  print(); // output 2 8
+}
