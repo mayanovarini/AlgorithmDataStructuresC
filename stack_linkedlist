@@ -1,10 +1,9 @@
-//  Stack - linked list based implementation
+//  Stack - linked list based implemention
 
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <stack>
-#include <iostream>
 
 #define MAX_SIZE 50
 
@@ -106,5 +105,5 @@ int main() {
   push_tail(55);
   print(); // output 6 2 3 19 55
   reverse();
-  print();
+  print(); // output 55 19 3 2 6
 }
