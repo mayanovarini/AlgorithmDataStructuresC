@@ -40,6 +40,17 @@ void pop_head() {
   free(temp);
 }
 
+void pop_tail() {
+  struct Node* temp = top;
+  struct Node* prev = NULL;
+  while (temp->link != NULL) {
+    prev = temp;
+    temp = temp->link;
+  }
+  free(temp);
+  prev->link = NULL;
+}
+
 void print() {
   Node* temp = top;
   while (temp != NULL) {
@@ -62,4 +73,11 @@ int main() {
   print(); // output 6 2 8
   pop_head();
   print(); // output 2 8
+  pop_tail();
+  push_tail(3);
+  print(); // output 2 3
+  push_tail(5);
+  print(); // output 2 3 5
+  pop_tail();
+  print(); // output 2 3
 }
