@@ -1,8 +1,10 @@
-//  Stack - Array based implemention
+//  Stack - linked list based implementation
 
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stack>
+#include <iostream>
 
 #define MAX_SIZE 50
 
@@ -60,6 +62,25 @@ void print() {
   printf("\n");
 }
 
+void reverse() { // Time O(N), Space O(1)
+  if (top == NULL) return;
+  std::stack<struct Node*> S; //create a stack called S
+  Node* temp = top;
+  while (temp != NULL) {
+    S.push(temp); //LIFO
+    temp = temp->link;
+  }
+  temp = S.top(); //now temp is pointing at the last inserted element on the stack or the TOP
+  top = temp; // head points at the same element
+  S.pop(); //clear up the element from top of the stack
+  while(!S.empty()) {
+    temp->link = S.top(); //point temp to the previous element in the linked list, or the element at the top
+    S.pop(); // clear up that element fromt the stack
+    temp = temp->link;
+  }
+  temp->link = NULL;
+}
+
 int main() {
   push_head(2);
   print(); // output 2
@@ -80,4 +101,10 @@ int main() {
   print(); // output 2 3 5
   pop_tail();
   print(); // output 2 3
+  push_head(6);
+  push_tail(19);
+  push_tail(55);
+  print(); // output 6 2 3 19 55
+  reverse();
+  print();
 }
