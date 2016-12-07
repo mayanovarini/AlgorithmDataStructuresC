@@ -1,0 +1,67 @@
+// Queue - Linked List implementation
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node {
+	int data;
+	struct Node* next;
+};
+
+// Two global variables to store address of front and rear nodes.
+struct Node* front = NULL;
+struct Node* rear = NULL;
+
+void Enqueue(int x) { // To insert an interget into the queue
+	struct Node* temp = new Node();
+	temp->data =x;
+	temp->next = NULL;
+	if(front == NULL && rear == NULL){
+		front = rear = temp;
+		return;
+	}
+	rear->next = temp;
+	rear = temp;
+}
+
+void Dequeue() { // To remove an integer from the queue
+	struct Node* temp = front;
+	if(front == NULL) {
+		printf("Queue is Empty\n");
+		return;
+	}
+	if(front == rear) {
+		front = rear = NULL;
+	}
+	else {
+		front = front->next;
+	}
+	free(temp);
+}
+
+int Front() { // to peek into the queue and see what's on the first node
+	if(front == NULL) {
+		printf("Queue is empty\n");
+		return -1;
+	}
+	return front->data;
+}
+
+void Print() {
+	struct Node* temp = front;
+	while(temp != NULL) {
+		printf("%d ",temp->data);
+		temp = temp->next;
+	}
+	printf("\n");
+}
+
+// Test it
+
+int main(){
+	Enqueue(12); Print();
+	Enqueue(9); Print();
+	Enqueue(5); Print(); // output 12 9 5
+	Dequeue();  Print(); // taking out the node at head
+	Enqueue(80); Print(); // output 9 5 80
+}}
