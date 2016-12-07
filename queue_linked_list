@@ -13,11 +13,12 @@ struct Node* front = NULL;
 struct Node* rear = NULL;
 
 void Enqueue(int x) { // To insert an interget into the queue
-	struct Node* temp = new Node();
+	struct Node* temp = new Node(); // create a node in the heap
 	temp->data =x;
 	temp->next = NULL;
-	if(front == NULL && rear == NULL){
-		front = rear = temp;
+
+	if(front == NULL && rear == NULL){ // if the linked list is empty
+		front = rear = temp; //make front and rear to point to the same address (temp)
 		return;
 	}
 	rear->next = temp;
@@ -25,7 +26,8 @@ void Enqueue(int x) { // To insert an interget into the queue
 }
 
 void Dequeue() { // To remove an integer from the queue
-	struct Node* temp = front;
+	struct Node* temp = front; // create a temp pointer variable storing the address of front, because we need another pointer to point to the first node that we are going to dequeue, while the front pointer will be pointing at the next node
+
 	if(front == NULL) {
 		printf("Queue is Empty\n");
 		return;
@@ -34,9 +36,9 @@ void Dequeue() { // To remove an integer from the queue
 		front = rear = NULL;
 	}
 	else {
-		front = front->next;
+		front = front->next; // this is where the front pointer points at the second node
 	}
-	free(temp);
+	free(temp); // we still have to remove the temp from the heap, that points to the what once was the first node, but later dequeued
 }
 
 int Front() { // to peek into the queue and see what's on the first node
@@ -44,12 +46,12 @@ int Front() { // to peek into the queue and see what's on the first node
 		printf("Queue is empty\n");
 		return -1;
 	}
-	return front->data;
+	return front->data; // showing you the value
 }
 
 void Print() {
-	struct Node* temp = front;
-	while(temp != NULL) {
+	struct Node* temp = front; // create a temp pointer variable pointing at the same address that front points at
+	while(temp != NULL) { // traversing using temp pointer
 		printf("%d ",temp->data);
 		temp = temp->next;
 	}
@@ -64,4 +66,4 @@ int main(){
 	Enqueue(5); Print(); // output 12 9 5
 	Dequeue();  Print(); // taking out the node at head
 	Enqueue(80); Print(); // output 9 5 80
-}}
+}
