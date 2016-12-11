@@ -1,0 +1,73 @@
+// Binary Search Tree - Implementation in C++
+// Simple program to create a BST of integers and search an element in it
+
+#include<iostream>
+using namespace std;
+
+//Definition of Node for Binary search tree
+struct BstNode {
+	int data;
+	BstNode* left;
+	BstNode* right;
+};
+
+// Function to create a new Node in heap
+BstNode* GetNewNode(int data) { // return type is a pointer to BstNode
+	BstNode* newNode = new BstNode();
+	newNode->data = data;
+	newNode->left = newNode->right = NULL;
+	return newNode; // returns the address of the new node
+}
+
+// To insert data in BST, returns address of root node
+// Time complexity O(LogN)
+BstNode* Insert(BstNode* node,int data) {
+	if(node == NULL) { // empty tree
+		node = GetNewNode(data); // We will eventually get to this point, taking in the address of the new data and assign it to node.
+	}
+	// if data to be inserted is lesser, insert in left subtree.
+	else if(data <= node->data) {
+		node->left = Insert(node->left,data);
+	}
+	// else, insert in right subtree.
+	else {
+		node->right = Insert(node->right,data);
+	}
+	return node; // EVENTUALLY it returns the address of root node
+}
+
+//To search an element in BST, returns true if element is found
+//Time complexity O(LogN)
+bool Search(BstNode* node,int data) {
+	if(node == NULL) {
+		return false;
+	}
+	else if(node->data == data) {
+		return true;
+	}
+	else if(data <= node->data) {
+		return Search(node->left,data);
+	}
+	else {
+		return Search(node->right,data);
+	}
+}
+
+//test it
+
+int main() {
+	BstNode* root = NULL;  // Creating an empty tree
+	root = Insert(root,15);
+	Insert(root,8);
+	Insert(root,19);
+	Insert(root,5);
+	Insert(root,43);
+	Insert(root,12);
+	// Ask user to enter a number.
+	int number;
+	cout<<"What number do you want to search?\n";
+	cin>>number;
+	//If number is found, print "FOUND"
+	if(Search(root,number) == true) cout<<"Yay! We have that number\n";
+	else cout<<"Oops! We don't have that number\n";
+}
