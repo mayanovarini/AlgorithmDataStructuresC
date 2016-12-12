@@ -3,6 +3,8 @@
 
 #include<iostream>
 using namespace std;
+#include <stdio.h>;
+
 
 //Definition of Node for Binary search tree
 struct BstNode {
@@ -53,6 +55,30 @@ bool Search(BstNode* node,int data) {
 	}
 }
 
+// Find Minimum node in the BST
+int findMin(BstNode* root) {
+  if (root == NULL) {
+    cout<<"Error";
+    return -1;
+  }
+  while(root->left != NULL) {
+    root = root->left;
+  }
+  return root->data;
+}
+
+// Find Maximum node in the BST using recursion
+int findMax(BstNode* root) {
+  if (root == NULL) {
+    cout<<"Error";
+    return -1;
+  }
+  else if (root->right == NULL) {
+    return root->data;
+  }
+  return findMax(root->right);
+}
+
 //test it
 
 int main() {
@@ -69,5 +95,9 @@ int main() {
 	cin>>number;
 	//If number is found, print something out
 	if(Search(root,number) == true) cout<<"Yay! We have that number\n";
-	else cout<<"Oops! We don't have that number\n";
+	else cout<<"Oops! We don't have that number\n \n";
+
+	printf("%s" "%d" "\n", "The minimum node in the tree is : ", findMin(root));
+	printf("%s" "%d", "The maximum node in the tree is : ", findMax(root));
+
 }
