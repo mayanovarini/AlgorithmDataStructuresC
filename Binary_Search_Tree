@@ -79,6 +79,16 @@ int findMax(BstNode* root) {
   return findMax(root->right);
 }
 
+// Find the height of the tree
+// Time complexity O(n)
+
+int findHeight(BstNode* root) {
+  if(root == NULL)
+    return -1;
+
+  return max(findHeight(root->left), findHeight(root->right)) + 1;
+}
+
 //test it
 
 int main() {
@@ -98,6 +108,8 @@ int main() {
 	else cout<<"Oops! We don't have that number\n \n";
 
 	printf("%s" "%d" "\n", "The minimum node in the tree is : ", findMin(root));
-	printf("%s" "%d", "The maximum node in the tree is : ", findMax(root));
+	printf("%s" "%d" "\n", "The maximum node in the tree is : ", findMax(root));
+
+	printf("%s" "%d" "\n", "The height of the tree is : ", findHeight(root));
 
 }
