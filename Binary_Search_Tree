@@ -67,7 +67,7 @@ int main() {
 	int number;
 	cout<<"What number do you want to search?\n";
 	cin>>number;
-	//If number is found, print "FOUND"
+	//If number is found, print something out
 	if(Search(root,number) == true) cout<<"Yay! We have that number\n";
 	else cout<<"Oops! We don't have that number\n";
 }
