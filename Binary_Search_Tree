@@ -2,9 +2,9 @@
 // Simple program to create a BST of integers and search an element in it
 
 #include<iostream>
+#include<stdio.h>
+#include<queue>
 using namespace std;
-#include <stdio.h>;
-
 
 //Definition of Node for Binary search tree
 struct BstNode {
@@ -89,6 +89,22 @@ int findHeight(BstNode* root) {
   return max(findHeight(root->left), findHeight(root->right)) + 1;
 }
 
+// Print the nodes in Level Order
+// Time complexity O(n)
+//Space complexity O(n) for full tree or O(1) for single linked tree with each node only has one child
+void levelOrder(BstNode *root) {
+	if(root == NULL) return;
+	queue<BstNode*> Q;
+	Q.push(root);
+	//while there is at least one discovered node
+	while(!Q.empty()) {
+		BstNode* current = Q.front();
+		Q.pop(); // removing the element at front
+		cout<<current->data<<" ";
+		if(current->left != NULL) Q.push(current->left);
+		if(current->right != NULL) Q.push(current->right);
+	}
+}
 //test it
 
 int main() {
@@ -112,4 +128,5 @@ int main() {
 
 	printf("%s" "%d" "\n", "The height of the tree is : ", findHeight(root));
 
+  printf("%s" "\n", "The nodes in the tree based on Level Order Traversal are : "); levelOrder(root);
 }
