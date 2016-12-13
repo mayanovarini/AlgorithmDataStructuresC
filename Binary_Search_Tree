@@ -105,6 +105,36 @@ void levelOrder(BstNode *root) {
 		if(current->right != NULL) Q.push(current->right);
 	}
 }
+
+// D - L - R
+// First print will be the root it self
+void preOrder(BstNode* root) {
+  if (root == NULL) return;
+  printf("%d", root->data); // Data
+    cout<<" ";
+  preOrder(root->left); // Left
+  preOrder(root->right); // Right
+}
+
+// L - D - R
+// Go all the way to the left side of the bottom of the longest tree
+void inOrder(BstNode* root) {
+  if (root == NULL) return;
+  inOrder(root->left); // Left
+  printf("%d", root->data); // Data
+    cout<<" ";
+  inOrder(root->right); // Right
+}
+
+// L - R - D
+// Go all the way to the left side of the bottom of the longest tree
+void postOrder(BstNode* root) {
+  if (root == NULL) return;
+  postOrder(root->left); // Left
+  postOrder(root->right); // Right
+  printf("%d", root->data); // Data
+    cout<<" ";
+}
 //test it
 
 int main() {
@@ -128,5 +158,12 @@ int main() {
 
 	printf("%s" "%d" "\n", "The height of the tree is : ", findHeight(root));
 
-  printf("%s" "\n", "The nodes in the tree based on Level Order Traversal are : "); levelOrder(root);
+  printf("\n" "%s" "\n", "The nodes in the tree based on Level Order Traversal are : "); levelOrder(root);
+
+  printf("\n" "\n" "%s" "\n", "The nodes in the tree based on PreOrder Traversal are : ");
+    preOrder(root);
+  printf("\n" "\n" "%s" "\n", "The nodes in the tree based on InOrder Traversal are : ");
+    inOrder(root);
+  printf("\n" "\n" "%s" "\n", "The nodes in the tree based on PostOrder Traversal are : ");
+    postOrder(root);
 }
