@@ -106,6 +106,7 @@ void levelOrder(BstNode *root) {
 	}
 }
 
+// Depth First will cost O(n) for Time Complexity and O(h) or O(n) for Space Complexity
 // D - L - R
 // First print will be the root it self
 void preOrder(BstNode* root) {
